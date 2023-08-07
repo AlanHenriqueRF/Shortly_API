@@ -29,7 +29,8 @@ CREATE TABLE public.shorturl (
     iduseronline integer,
     "shortUrl" text NOT NULL,
     url text NOT NULL,
-    "visitCount" integer NOT NULL
+    "visitCount" integer NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -61,7 +62,8 @@ CREATE TABLE public.userme (
     id integer NOT NULL,
     idname integer,
     idvisita integer,
-    allshorturls integer
+    allshorturls integer,
+    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -92,7 +94,8 @@ ALTER SEQUENCE public.userme_id_seq OWNED BY public.userme.id;
 CREATE TABLE public.useronline (
     id integer NOT NULL,
     iduser integer,
-    token text NOT NULL
+    token text NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -124,7 +127,8 @@ CREATE TABLE public.usersignup (
     id integer NOT NULL,
     name text NOT NULL,
     email text NOT NULL,
-    password text NOT NULL
+    password text NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -180,16 +184,15 @@ ALTER TABLE ONLY public.usersignup ALTER COLUMN id SET DEFAULT nextval('public.u
 -- Data for Name: shorturl; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.shorturl VALUES (3, 1, '65fJ1', 'https://www.globo.com/', 0);
-INSERT INTO public.shorturl VALUES (4, 1, 'N00sw', 'https://www.globo.com/', 0);
-INSERT INTO public.shorturl VALUES (5, 1, 'jJ--a', 'https://www.globo.com/', 0);
-INSERT INTO public.shorturl VALUES (6, 1, 'flxrLk', 'https://www.globo.com/', 0);
-INSERT INTO public.shorturl VALUES (7, 1, 'JZyBgJ', 'https://www.globo.com/', 3);
-INSERT INTO public.shorturl VALUES (8, 1, 'fZVj5v', 'https://www.globo.com/', 0);
-INSERT INTO public.shorturl VALUES (9, 1, 'xSdqxr', 'https://www.youtube.com/', 0);
-INSERT INTO public.shorturl VALUES (10, 1, '8DrJT0', 'https://www.youtube.com/', 0);
-INSERT INTO public.shorturl VALUES (11, 1, 'cux6RX', 'https://www.youtube.com/', 0);
-INSERT INTO public.shorturl VALUES (12, 2, 'kF8X91', 'http://kosher-collard.net', 0);
+INSERT INTO public.shorturl VALUES (3, 1, '65fJ1', 'https://www.globo.com/', 0, '2023-08-07 15:39:00.501159');
+INSERT INTO public.shorturl VALUES (4, 1, 'N00sw', 'https://www.globo.com/', 0, '2023-08-07 15:39:00.501159');
+INSERT INTO public.shorturl VALUES (5, 1, 'jJ--a', 'https://www.globo.com/', 0, '2023-08-07 15:39:00.501159');
+INSERT INTO public.shorturl VALUES (6, 1, 'flxrLk', 'https://www.globo.com/', 0, '2023-08-07 15:39:00.501159');
+INSERT INTO public.shorturl VALUES (7, 1, 'JZyBgJ', 'https://www.globo.com/', 3, '2023-08-07 15:39:00.501159');
+INSERT INTO public.shorturl VALUES (9, 1, 'xSdqxr', 'https://www.youtube.com/', 0, '2023-08-07 15:39:00.501159');
+INSERT INTO public.shorturl VALUES (10, 1, '8DrJT0', 'https://www.youtube.com/', 0, '2023-08-07 15:39:00.501159');
+INSERT INTO public.shorturl VALUES (11, 1, 'cux6RX', 'https://www.youtube.com/', 0, '2023-08-07 15:39:00.501159');
+INSERT INTO public.shorturl VALUES (12, 2, 'kF8X91', 'http://kosher-collard.net', 0, '2023-08-07 15:39:00.501159');
 
 
 --
@@ -202,16 +205,16 @@ INSERT INTO public.shorturl VALUES (12, 2, 'kF8X91', 'http://kosher-collard.net'
 -- Data for Name: useronline; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.useronline VALUES (1, 3, '165da3eb-3511-4b48-8473-a60027b72de3');
-INSERT INTO public.useronline VALUES (2, 4, 'd847a712-b859-479f-a468-567bdad44e6d');
+INSERT INTO public.useronline VALUES (1, 3, '165da3eb-3511-4b48-8473-a60027b72de3', '2023-08-07 15:39:34.209037');
+INSERT INTO public.useronline VALUES (2, 4, 'd847a712-b859-479f-a468-567bdad44e6d', '2023-08-07 15:39:34.209037');
 
 
 --
 -- Data for Name: usersignup; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.usersignup VALUES (3, 'João', 'joao@driven.com.br', '$2b$10$8LF29fbWb6uMi7/o5gHCIeCymaGwvcz.02dM9a6WrqRYJsgMo4f1m');
-INSERT INTO public.usersignup VALUES (4, 'alan', 'alan@gmail.com', '$2b$10$62Vdozc8I20iFUIcMqQFIujJFhvILVVzaJNLDbOl36eodzVNMqCzq');
+INSERT INTO public.usersignup VALUES (3, 'João', 'joao@driven.com.br', '$2b$10$8LF29fbWb6uMi7/o5gHCIeCymaGwvcz.02dM9a6WrqRYJsgMo4f1m', '2023-08-07 15:39:48.715685');
+INSERT INTO public.usersignup VALUES (4, 'alan', 'alan@gmail.com', '$2b$10$62Vdozc8I20iFUIcMqQFIujJFhvILVVzaJNLDbOl36eodzVNMqCzq', '2023-08-07 15:39:48.715685');
 
 
 --
@@ -239,7 +242,7 @@ SELECT pg_catalog.setval('public.useronline_id_seq', 2, true);
 -- Name: usersignup_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.usersignup_id_seq', 4, true);
+SELECT pg_catalog.setval('public.usersignup_id_seq', 6, true);
 
 
 --
