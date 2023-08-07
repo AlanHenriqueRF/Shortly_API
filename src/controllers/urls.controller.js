@@ -47,3 +47,23 @@ export async function openShort(req,res){
         res.status(500).send(err.message)
     }
 }
+
+export async function delurl(req,res){
+    const {id} = req.params;
+    const token = res.locals.token
+
+    try {
+        let iduseronline  = (await db.query(`SELECT * FROM shorturl WHERE id = $1`,[id]));
+        if (iduseronline.rowCount === 0) return res.sendStatus(404);
+
+        const tokenid = (await db.query(`SELECT * FROM useronline WHERE id = $1`,[iduseronline.rows[0].iduseronline])).rows[0].token;
+      
+        if (token !== tokenid) return res.sendStatus(401);
+
+        await db.query(`DELETE FROM shorturl WHERE id = $1;`,[id])
+        res.sendStatus(204)
+
+    }catch(err){
+
+    }
+}
