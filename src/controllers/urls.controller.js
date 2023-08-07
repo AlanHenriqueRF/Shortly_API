@@ -10,10 +10,12 @@ export async function urlsShorthen(req,res){
         const iduseronline = (await db.query(`SELECT id FROM useronline WHERE token=$1;`,[token])).rows[0].id
         
 
-        await db.query(`INSERT INTO shorturl (iduseronline,"shortUrl",url,visitcount) VALUES ($1,$2,$3,$4)`,[iduseronline,shortUrl,url,0])
+        await db.query(`INSERT INTO shorturl (iduseronline,"shortUrl",url,"visitCount") VALUES ($1,$2,$3,$4)`,[iduseronline,shortUrl,url,0])
         const response = (await db.query(`SELECT * from shorturl WHERE "shortUrl"=$1`,[shortUrl])).rows[0]
 
-        res.status(201).send({id:response.id,shortUrl:response.shorturl})
+        console.log(response)
+
+        res.status(201).send({id:response.id,shortUrl:response.shortUrl})
     }catch(err){
         res.status(500).send(err.message);
     }
