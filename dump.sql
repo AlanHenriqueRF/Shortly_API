@@ -27,9 +27,9 @@ SET default_table_access_method = heap;
 CREATE TABLE public.shorturl (
     id integer NOT NULL,
     iduseronline integer,
-    shorturl text NOT NULL,
+    shortUrl text NOT NULL,
     url text NOT NULL,
-    visitcount integer NOT NULL
+    visitCount integer NOT NULL
 );
 
 
