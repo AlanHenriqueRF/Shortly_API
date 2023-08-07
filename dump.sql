@@ -27,9 +27,9 @@ SET default_table_access_method = heap;
 CREATE TABLE public.shorturl (
     id integer NOT NULL,
     iduseronline integer,
-    shortUrl text NOT NULL,
+    "shortUrl" text NOT NULL,
     url text NOT NULL,
-    visitCount integer NOT NULL
+    "visitCount" integer NOT NULL
 );
 
 
@@ -180,6 +180,16 @@ ALTER TABLE ONLY public.usersignup ALTER COLUMN id SET DEFAULT nextval('public.u
 -- Data for Name: shorturl; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.shorturl VALUES (3, 1, '65fJ1', 'https://www.globo.com/', 0);
+INSERT INTO public.shorturl VALUES (4, 1, 'N00sw', 'https://www.globo.com/', 0);
+INSERT INTO public.shorturl VALUES (5, 1, 'jJ--a', 'https://www.globo.com/', 0);
+INSERT INTO public.shorturl VALUES (6, 1, 'flxrLk', 'https://www.globo.com/', 0);
+INSERT INTO public.shorturl VALUES (7, 1, 'JZyBgJ', 'https://www.globo.com/', 3);
+INSERT INTO public.shorturl VALUES (8, 1, 'fZVj5v', 'https://www.globo.com/', 0);
+INSERT INTO public.shorturl VALUES (9, 1, 'xSdqxr', 'https://www.youtube.com/', 0);
+INSERT INTO public.shorturl VALUES (10, 1, '8DrJT0', 'https://www.youtube.com/', 0);
+INSERT INTO public.shorturl VALUES (11, 1, 'cux6RX', 'https://www.youtube.com/', 0);
+INSERT INTO public.shorturl VALUES (12, 2, 'kF8X91', 'http://kosher-collard.net', 0);
 
 
 --
@@ -192,6 +202,8 @@ ALTER TABLE ONLY public.usersignup ALTER COLUMN id SET DEFAULT nextval('public.u
 -- Data for Name: useronline; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.useronline VALUES (1, 3, '165da3eb-3511-4b48-8473-a60027b72de3');
+INSERT INTO public.useronline VALUES (2, 4, 'd847a712-b859-479f-a468-567bdad44e6d');
 
 
 --
@@ -199,13 +211,14 @@ ALTER TABLE ONLY public.usersignup ALTER COLUMN id SET DEFAULT nextval('public.u
 --
 
 INSERT INTO public.usersignup VALUES (3, 'João', 'joao@driven.com.br', '$2b$10$8LF29fbWb6uMi7/o5gHCIeCymaGwvcz.02dM9a6WrqRYJsgMo4f1m');
+INSERT INTO public.usersignup VALUES (4, 'alan', 'alan@gmail.com', '$2b$10$62Vdozc8I20iFUIcMqQFIujJFhvILVVzaJNLDbOl36eodzVNMqCzq');
 
 
 --
 -- Name: shorturl_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.shorturl_id_seq', 1, false);
+SELECT pg_catalog.setval('public.shorturl_id_seq', 12, true);
 
 
 --
@@ -219,14 +232,14 @@ SELECT pg_catalog.setval('public.userme_id_seq', 1, false);
 -- Name: useronline_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.useronline_id_seq', 1, false);
+SELECT pg_catalog.setval('public.useronline_id_seq', 2, true);
 
 
 --
 -- Name: usersignup_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.usersignup_id_seq', 3, true);
+SELECT pg_catalog.setval('public.usersignup_id_seq', 4, true);
 
 
 --
