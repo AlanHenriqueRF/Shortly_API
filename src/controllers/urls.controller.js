@@ -13,8 +13,6 @@ export async function urlsShorthen(req,res){
         await db.query(`INSERT INTO shorturl (iduseronline,"shortUrl",url,"visitCount") VALUES ($1,$2,$3,$4)`,[iduseronline,shortUrl,url,0])
         const response = (await db.query(`SELECT * from shorturl WHERE "shortUrl"=$1`,[shortUrl])).rows[0]
 
-        console.log(response)
-
         res.status(201).send({id:response.id,shortUrl:response.shortUrl})
     }catch(err){
         res.status(500).send(err.message);
